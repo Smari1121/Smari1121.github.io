@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swimming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(180deg, #053f5e, #0a617d, #115173);
+            min-height: 100vh;
+            font-family: 'Quicksand', sans-serif;
+            color: #e0f7fa;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .water-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23053f5e" fill-opacity="0.1" d="M0,128L48,138.7C96,149,192,171,288,176C384,181,480,171,576,149.3C672,128,768,96,864,106.7C960,117,1056,171,1152,192C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.5;
+            animation: waterWave 15s ease-in-out infinite alternate;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: bubbleRise linear forwards;
+        }
+
+        @keyframes bubbleRise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes waterWave {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(20px);
+            }
+        }
+
+        .ripple {
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rippleEffect 2s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+                margin-left: -100px;
+                margin-top: -100px;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #e0f7fa;
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 3px;
+            margin: 10px auto 0;
+            background: linear-gradient(90deg, transparent, rgba(224, 247, 250, 0.8), transparent);
+            border-radius: 50%;
+            animation: waveUnderline 4s ease-in-out infinite;
+        }
+
+        @keyframes waveUnderline {
+            0%, 100% {
+                width: 60%;
+            }
+            50% {
+                width: 40%;
+            }
+        }
+
+        .body-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: justify;
+            position: relative;
+            padding: 1.5rem;
+            background: rgba(5, 63, 94, 0.3);
+            border-radius: 10px;
+            backdrop-filter: blur(3px);
+            margin-bottom: 1.5rem;
+        }
+
+        .body-text p {
+            margin-bottom: 1rem;
+        }
+
+        .body-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .swimming-lane {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(5, 63, 94, 0.5),
+                rgba(5, 63, 94, 0.5) 10px,
+                rgba(10, 97, 125, 0.5) 10px,
+                rgba(10, 97, 125, 0.5) 20px
+            );
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .body-text {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="water-overlay"></div>
+    <div class="swimming-lane"></div>
+
+    <div class="container">
+        <h2>Did Someone Say Swimming?!</h2>
+        
+        <div class="body-text">
+            <p>
+
+There is something incredibly freeing about swimming—not for competition, not for speed, but simply for the joy of it. I’ve never chased medals or records in the water; instead, I slip in just to feel the gentle resistance of it, the coolness that wraps around me like a second skin. Each stroke is unhurried, each breath a quiet rhythm that syncs with the ripples I leave behind. In those moments, the world quiets. The water doesn’t expect anything of me—it simply holds me, lets me float, lets me *be*. Swimming, for me, is not a sport. It’s a feeling. A soft conversation between body and water.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Create bubbles randomly
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            const size = Math.random() * 30 + 10;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            
+            const posX = Math.random() * window.innerWidth;
+            const posY = window.innerHeight + Math.random() * 100;
+            
+            bubble.style.left = `${posX}px`;
+            bubble.style.bottom = `${posY}px`;
+            
+            const duration = Math.random() * 8 + 4;
+            bubble.style.animationDuration = `${duration}s`;
+            
+            document.body.appendChild(bubble);
+            
+            setTimeout(() => {
+                bubble.remove();
+            }, duration * 1000);
+        }
+        
+        // Create ripples on click
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = `${e.clientX}px`;
+            ripple.style.top = `${e.clientY}px`;
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 2000);
+            
+            // Create extra bubbles on click
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const bubble = document.createElement('div');
+                    bubble.className = 'bubble';
+                    
+                    const size = Math.random() * 15 + 5;
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    
+                    const offset = Math.random() * 60 - 30;
+                    bubble.style.left = `${e.clientX + offset}px`;
+                    bubble.style.top = `${e.clientY}px`;
+                    
+                    const duration = Math.random() * 4 + 2;
+                    bubble.style.animationDuration = `${duration}s`;
+                    
+                    document.body.appendChild(bubble);
+                    
+                    setTimeout(() => {
+                        bubble.remove();
+                    }, duration * 1000);
+                }, i * 100);
+            }
+        });
+        
+        // Generate bubbles periodically
+        setInterval(createBubble, 800);
+        
+        // Initial bubbles
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createBubble, i * 300);
+        }
+    </script>
+</body>
+</html>

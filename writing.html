@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Handlee&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(45deg, #0b0b2a, #1a1a4a);
+            min-height: 100vh;
+            font-family: 'Cormorant Garamond', serif;
+            color: #e6e6ff;
+        }
+
+        .book-container {
+            perspective: 1500px;
+            padding: 2rem;
+        }
+
+        .book {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #19193b, #2a2a5a);
+            border: 1px solid #4a4a8a;
+            padding: 2rem;
+            box-shadow: 0 0 30px rgba(100, 100, 255, 0.1);
+            backface-visibility: hidden;
+            transition: transform 1s;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1; /* Base z-index */
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            border: 1px solid rgba(100, 100, 255, 0.3);
+            pointer-events: none;
+        }
+
+        .page h2 {
+            font-family: 'Handlee', cursive;
+            color: #b19cd9;
+            border-bottom: 1px solid #4a4a8a;
+            padding-bottom: 0.5rem;
+        }
+
+        .page p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: justify;
+            flex-grow: 1;
+        }
+
+        .page-number {
+            text-align: right;
+            font-family: 'Space Mono', monospace;
+            color: #6c6c9e;
+        }
+
+        /* Page flip animations */
+        .page {
+            transform-origin: left center;
+        }
+
+        .page.active {
+            z-index: 10; /* Higher z-index for active page */
+        }
+
+        .flipped {
+            transform: rotateY(-180deg);
+        }
+
+        /* Flip instruction styles */
+        .flip-instruction {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #2a2a5a, #3a3a6a);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(100, 100, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 1;
+            transition: all 1s ease-in-out;
+            z-index: 1000;
+        }
+
+        .flip-instruction.hide {
+            opacity: 0;
+            top: 70%;
+            pointer-events: none;
+        }
+
+        .flip-arrow {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            animation: flipPrompt 2s infinite;
+        }
+
+        .flip-arrow::before,
+        .flip-arrow::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 4px;
+            background: #b19cd9;
+            border-radius: 2px;
+        }
+
+        .flip-arrow::before {
+            transform: rotate(45deg);
+            left: 0;
+        }
+
+        .flip-arrow::after {
+            transform: rotate(-45deg);
+            right: 0;
+        }
+
+        @keyframes flipPrompt {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        .instruction-text {
+            font-family: 'Handlee', cursive;
+            color: #e6e6ff;
+            font-size: 1.2rem;
+        }
+
+        /* Navigation buttons */
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #2a2a5a, #3a3a6a);
+            border: none;
+            color: #e6e6ff;
+            font-family: 'Space Mono', monospace;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-button:hover {
+            background: linear-gradient(45deg, #3a3a6a, #4a4a8a);
+            box-shadow: 0 0 15px rgba(100, 100, 255, 0.3);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 800px) {
+            .book {
+                width: 95%;
+                height: 80vh;
+            }
+
+            .page {
+                padding: 1rem;
+            }
+
+            .flip-instruction {
+                width: 80%;
+                text-align: center;
+                flex-direction: column;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flip-instruction" role="alert" aria-live="polite">
+        <div class="flip-arrow" aria-hidden="true"></div>
+        <div class="instruction-text">Click sides to flip pages</div>
+    </div>
+
+    <div class="book-container">
+        <div class="book">
+            <div class="page active" data-page="1">
+                <h2>The First Stroke</h2>
+                <p>There's something sweet about 'firsts', be it writing, reading, singing, going out alone etc. Ever since we are born, we celebrate so many firsts, and it fills our heart with this glee that we like to hold dear in the form of photos, diary entries, and what not. 
+                   We are like that. However, when you take up writing for the first time, you don't celebrate it. I didn't. The lifting of the pen and writing out my thoughts was celebration enough, and it was one of the sweetest celebrations. I still have the story I wrote, that made me start writing. 
+                   It was about a lost kingdom where everything was made of chocolate. Yes, I was a kid, and this was one of the most exciting stuff I could come up with. But even at a tender age, all the kinds of art forms have this unique way of touching our hearts. And, it was because of this that a 7-year old 
+                   ,whose first step to writing was a highly fantastic chocolaty world where she and her friends roamed and ran and flew, found through the immaculately scribbled pages with absurd drawings as 'illustrations', a love for this simple act of penning down her thoughts on paper.
+                   <br>
+                   It is laborious, some say, to pen down your ideas and thoughts, but when you get down to doing it, it becomes a part of you. And the movement of your hand as you slide the pen over the paper becomes almost involuntary, as your thoughts directly connect to your movements that fill pages and pages of a book.
+                   <br>
+                   Towards the start, it was a little difficult to create this connection, but it was only after a few months of writing, that I realised that, I had already formed this connection with my pen, and that such a connection doesn't need to be formed, it develops on its own, and it is truly a beautiful thing.
+                   <br>
+                   My earlier stories and works literally offer a portal to my younger self. The words, and the spaces in between them, paint a portrait of the person I used to be. For me, this provides a much better insight into a person than pictures ever could.
+                   <br>
+                   
+                </p>
+                <div class="page-number">1</div>
+            </div>
+            <div class="page" data-page="2">
+                <h2>Stories come alive</h2>
+                <p>
+                    Stories, especially the fictional ones, offer a gentle retreat from one's present, and wrap them into the world they wish to explore. Be it a soft love story, a sad tale of separation, a humorous story, or a gruesome murder tale, the human mind forever seeks retreat to these imaginary lands and scenarios, because it
+                    sees the reality as being much less fantastic than the experiences words have to offer. 
+                    <br>
+                    Characters come alive and stand near us as they try to solve a mysterious disappearance case, or sit crumpled up near us as they mourn over the loss of a loved one, or lay smiling in silly fantasies of their much adored person. Often, in them, we see us, or in us them, doesn't really matter which. 
+                    <br>
+                    Soon, I was fascinated by the idea of writing stories, and creating my own characters, which I mostly did in the form of detective stories, to quench my longing for some thrill and a cozy murder mystery, something along the lines of Poirot's cases by Agatha Christie. She was actually my biggest inspiration to take up writing stories.
+                    <br>
+                    From there, I also moved to some mature topics like love that asks nothing in return and is content to see the person happy, even if not destined to be with them. While reading such books, readers are often moved to tears. But I assure you, the writers also meet a similar fate. Any art form inducing emotions is capable of moving us to the same degree that a real situation might do.
+                    <br>
+                    And that is how, words propagate from paper, and stories come alive.
+                </p>
+                <div class="page-number">2</div>
+            </div>
+            <div class="page" data-page="3">
+                <h2>An Excerpt From My Writings</h2>
+                <p>
+                    "
+                    <br>
+                    "Salut d'amour, or Liebesgruss as it was originally titled, means Love's Greeting…"
+                    <br>
+                    And it was at that moment, that a memory came into my mind. I looked at him standing there. It was dark now, his figure a silhouette. I remembered. I saw the same silhouette in a much brighter background, stretch its hand for me as I ran frantically, ran away from the darkness, whether real or not I didn't know. And as the path went up, the hand, so strong yet so gentle, pulled me up. The silhouette saved me. Saved me from the darkness within. Who was it? Who else should it be, but the person who played the Arabesque. Played it like he was trying to say something. Something to me… I wondered, did he know I was listening? The wooden boards of the platform were not so silent as I thought them to be at that moment. They did creak, when someone walked over them. 
+                    <br>
+                    And then with a flash, it all came to me. That grabbing of my hand, held so tight and that piece ever so gentle. I realised what it felt like. Like a sort of… welcome, perhaps? Or a…
+                    <br>
+                    I looked at him again, with city lights twinkling here and there, his hair slightly overgrown, moving softly with the calm wind, as he smiled gently. I knew now, what it had felt like. 
+                    <br>
+                    A greeting.
+                    <br>
+                    Love's greeting.
+                    <br>
+                    "
+                </p>
+                <div class="page-number">3</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="nav-button prev-button" disabled>Previous</button>
+        <button class="nav-button next-button">Next</button>
+    </div>
+
+    <script>
+        const flipInstruction = document.querySelector('.flip-instruction');
+        const pages = document.querySelectorAll('.page');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        let currentPage = 0;
+        let isFlipping = false;
+        const totalPages = pages.length;
+
+        // Hide instruction after 5 seconds
+        setTimeout(() => {
+            flipInstruction.classList.add('hide');
+        }, 5000);
+
+        // Initialize page z-indices
+        function initializePages() {
+            pages.forEach((page, index) => {
+                page.style.zIndex = totalPages - index;
+            });
+        }
+
+        // Update button states
+        function updateButtons() {
+            prevButton.disabled = currentPage === 0;
+            nextButton.disabled = currentPage === totalPages - 1;
+        }
+
+        // Go to previous page
+        function goPrevious() {
+            if (isFlipping || currentPage === 0) return;
+            isFlipping = true;
+            
+            flipInstruction.classList.add('hide');
+            
+            pages[currentPage - 1].classList.add('active');
+            pages[currentPage].classList.remove('active');
+            pages[currentPage - 1].classList.remove('flipped');
+            
+            currentPage--;
+            
+            updateButtons();
+            
+            setTimeout(() => {
+                isFlipping = false;
+            }, 1000);
+        }
+
+        // Go to next page
+        function goNext() {
+            if (isFlipping || currentPage === totalPages - 1) return;
+            isFlipping = true;
+            
+            flipInstruction.classList.add('hide');
+            
+            pages[currentPage].classList.add('flipped');
+            pages[currentPage].classList.remove('active');
+            pages[currentPage + 1].classList.add('active');
+            
+            currentPage++;
+            
+            updateButtons();
+            
+            setTimeout(() => {
+                isFlipping = false;
+            }, 1000);
+        }
+
+        // Handle page flips by clicking on page sides
+        function handleFlip(e) {
+            if (isFlipping) return;
+            
+            flipInstruction.classList.add('hide');
+            
+            const clickX = e.clientX || (e.touches && e.touches[0].clientX);
+            if (!clickX) return;
+            
+            const windowWidth = window.innerWidth;
+
+            if (clickX > windowWidth/2) {
+                goNext();
+            } else {
+                goPrevious();
+            }
+        }
+
+        // Initialize
+        initializePages();
+        updateButtons();
+
+        // Event listeners
+        prevButton.addEventListener('click', goPrevious);
+        nextButton.addEventListener('click', goNext);
+        document.addEventListener('click', handleFlip);
+        document.addEventListener('touchstart', handleFlip);
+    </script>
+</body>
+</html>

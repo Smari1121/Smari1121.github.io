@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=EB+Garamond&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --page-color: #f5eedc;
+            --page-border: #8b7355;
+            --text-color: #3a2f1d;
+            --heading-color: #5d432c;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(to right, #d9c8b4 0%, #c3b09f 100%);
+            min-height: 100vh;
+            font-family: 'EB Garamond', serif;
+            color: var(--text-color);
+        }
+
+        .book-container {
+            perspective: 1500px;
+            padding: 2rem;
+        }
+
+        .book {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            background: #6b503c;
+            border-radius: 5px;
+            box-shadow: 0 0 40px var(--shadow-color);
+        }
+
+        .page {
+            position: absolute;
+            width: 98%;
+            height: 96%;
+            top: 2%;
+            left: 1%;
+            background: var(--page-color);
+            border: 1px solid var(--page-border);
+            padding: 3rem;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+            backface-visibility: hidden;
+            transition: transform 1s;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            overflow: hidden;
+            transform-origin: left center;
+            z-index: 1; /* Base z-index */
+        }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to right,
+                transparent 0%,
+                rgba(0,0,0,0.02) 50%,
+                transparent 100%);
+            pointer-events: none;
+        }
+
+        .page::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            border: 1px solid rgba(139, 115, 85, 0.3);
+            pointer-events: none;
+        }
+
+        .page h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--heading-color);
+            border-bottom: 2px solid #d4c4b5;
+            padding-bottom: 0.5rem;
+            margin: 0 0 2rem 0;
+            font-size: 2.2rem;
+        }
+
+        .page p {
+            line-height: 1.8;
+            font-size: 1.2rem;
+            text-align: justify;
+            flex-grow: 1;
+            margin: 0;
+            text-indent: 2em;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 1rem;
+            right: 2rem;
+            font-family: 'Nanum Pen Script', cursive;
+            color: #8b7355;
+            font-size: 1.4rem;
+        }
+
+        /* Page flip animations */
+        .page.active {
+            z-index: 10; /* Higher z-index for active page */
+        }
+
+        .flipped {
+            transform: rotateY(-180deg);
+        }
+
+        /* Flip instruction styles */
+        .flip-instruction {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(245, 238, 220, 0.9);
+            padding: 1.5rem 2rem;
+            border-radius: 5px;
+            border: 2px solid var(--page-border);
+            box-shadow: 0 0 30px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 1;
+            transition: all 1s ease-in-out;
+            z-index: 1000;
+        }
+
+        .flip-instruction.hide {
+            opacity: 0;
+            top: 70%;
+            pointer-events: none;
+        }
+
+        .flip-arrow {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            animation: flipPrompt 2s infinite;
+        }
+
+        .flip-arrow::before,
+        .flip-arrow::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 3px;
+            background: var(--heading-color);
+            border-radius: 1px;
+        }
+
+        .flip-arrow::before {
+            transform: rotate(45deg);
+            left: 0;
+        }
+
+        .flip-arrow::after {
+            transform: rotate(-45deg);
+            right: 0;
+        }
+
+        @keyframes flipPrompt {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        .instruction-text {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--heading-color);
+            font-size: 1.4rem;
+        }
+        
+        /* Navigation buttons */
+        .nav-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .nav-button {
+            background: var(--page-color);
+            border: 1px solid var(--page-border);
+            color: var(--heading-color);
+            font-family: 'Cormorant Garamond', serif;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 10px var(--shadow-color);
+        }
+
+        .nav-button:hover {
+            background: #e8e0cc;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 800px) {
+            .book {
+                width: 95%;
+                height: 80vh;
+            }
+
+            .page {
+                padding: 1.5rem;
+            }
+
+            .page h2 {
+                font-size: 1.8rem;
+            }
+
+            .page p {
+                font-size: 1rem;
+            }
+
+            .flip-instruction {
+                width: 80%;
+                text-align: center;
+                flex-direction: column;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flip-instruction" role="alert" aria-live="polite">
+        <div class="flip-arrow" aria-hidden="true"></div>
+        <div class="instruction-text">Click sides to turn pages</div>
+    </div>
+
+    <div class="book-container">
+        <div class="book">
+            <div class="page active" data-page="1">
+                <h2>The First Touch</h2>
+                <p>
+                    There was a time when mysteries were loud, colourful, and filled with talking mice. But that changed the day I met Hercule Poirot. With his neat moustache, polished shoes, and mind like a finely tuned clock, he led me into a quieter, sharper world of crime and curiosity.<br>  
+Poirot didn’t chase; he observed. Every gesture, every glance, every silence—he noticed it all. And slowly, so did I. His calm precision felt almost soothing, his logic a kind of magic that made even the darkest stories feel orderly and complete.<br>  
+It wasn’t just the thrill of the mystery anymore—it was watching *him* think. The way he moved through chaos with such elegance made me fall in love with the idea that the smallest details hold the biggest truths.<br>  
+Now, whenever I return to those stories, it’s not just about solving the case. It’s about following Poirot, step by careful step, into a world where thought is power, and justice, a quiet triumph.<br>
+                </p>
+                <div class="page-number">Page 1</div>
+            </div>
+            <div class="page" data-page="2">
+                <h2>The Joy in words</h2>
+                <p>
+                    There is a certain stillness that wraps around you when you read—a gentle pause in the noise of the world. Between the pages of a book, time loosens its grip, and reality quietly steps aside. In that space, you are free. Free to live a hundred lives, to feel things too large for one lifetime, to wander through thoughts that aren’t entirely yours, yet feel like home.<br>  
+Reading is not an escape in the way some might say; it is a refuge—a temporary shelter from the weight of living. A place where emotions are allowed to stretch out fully, and questions are welcomed without the pressure of answers. Books do not rush you. They don’t demand you be anything other than present.<br>  
+And in that presence, something soft and almost sacred blooms. A reminder that the world, though heavy, is not without beauty. That in a few simple lines, the heart can find recognition. You return from a book quieter, perhaps, but more whole. Because sometimes, the act of sitting still with someone else’s words is the most profound way of listening to yourself.<br>
+                </p>
+                <div class="page-number">Page 2</div>
+            </div>
+            <div class="page" data-page="3">
+                <h2>The Bookshelf : The Portrait of a Reader</h2>
+                <p>
+                    For a long time, Agatha Christie’s books were my constant companions. I devoured them one after another—each mystery a clever puzzle, each twist a quiet thrill. There was something deeply satisfying about the precision of her plots, the elegance with which Poirot or Miss Marple untangled the chaos. I adored her work not just for the suspense, but for the comfort it brought—the steady rhythm of logic prevailing over disorder.<br>  
+But slowly, my shelves began to change. Mysteries gave way to something heavier, slower, and strangely more intimate—the classics. *Jane Eyre* introduced me to a quiet defiance wrapped in gothic romance; *1984* unsettled me, whispering truths that still echo in the back of my mind. *Wuthering Heights* was a wild, stormy ache of a novel, haunting in its intensity, while *Anna Karenina* unfolded like a tragic symphony of longing and choices.<br>  
+These stories didn’t promise neat resolutions. They lingered, asked harder questions, and pulled me into emotional landscapes I wasn’t always ready for—but somehow needed. It wasn’t a shift in taste, really. It felt more like deepening—a movement from the thrill of uncovering hidden truths to the quiet weight of feeling them.<br>
+                </p>
+                <div class="page-number">Page 3</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="nav-button prev-button" disabled>Previous</button>
+        <button class="nav-button next-button">Next</button>
+    </div>
+
+    <script>
+        const flipInstruction = document.querySelector('.flip-instruction');
+        const pages = document.querySelectorAll('.page');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        let currentPage = 0;
+        let isFlipping = false;
+        const totalPages = pages.length;
+
+        // Hide instruction after 5 seconds
+        setTimeout(() => {
+            flipInstruction.classList.add('hide');
+        }, 5000);
+
+        // Initialize page z-indices
+        function initializePages() {
+            pages.forEach((page, index) => {
+                page.style.zIndex = totalPages - index;
+            });
+        }
+
+        // Update button states
+        function updateButtons() {
+            prevButton.disabled = currentPage === 0;
+            nextButton.disabled = currentPage === totalPages - 1;
+        }
+
+        // Go to previous page
+        function goPrevious() {
+            if (isFlipping || currentPage === 0) return;
+            isFlipping = true;
+            
+            flipInstruction.classList.add('hide');
+            
+            pages[currentPage - 1].classList.add('active');
+            pages[currentPage].classList.remove('active');
+            pages[currentPage - 1].classList.remove('flipped');
+            
+            currentPage--;
+            
+            updateButtons();
+            
+            setTimeout(() => {
+                isFlipping = false;
+            }, 1000);
+        }
+
+        // Go to next page
+        function goNext() {
+            if (isFlipping || currentPage === totalPages - 1) return;
+            isFlipping = true;
+            
+            flipInstruction.classList.add('hide');
+            
+            pages[currentPage].classList.add('flipped');
+            pages[currentPage].classList.remove('active');
+            pages[currentPage + 1].classList.add('active');
+            
+            currentPage++;
+            
+            updateButtons();
+            
+            setTimeout(() => {
+                isFlipping = false;
+            }, 1000);
+        }
+
+        // Handle page flips by clicking on page sides
+        function handleFlip(e) {
+            if (isFlipping) return;
+            
+            flipInstruction.classList.add('hide');
+            
+            const clickX = e.clientX || (e.touches && e.touches[0].clientX);
+            if (!clickX) return;
+            
+            const windowWidth = window.innerWidth;
+
+            if (clickX > windowWidth/2) {
+                goNext();
+            } else {
+                goPrevious();
+            }
+        }
+
+        // Initialize
+        initializePages();
+        updateButtons();
+
+        // Event listeners
+        prevButton.addEventListener('click', goPrevious);
+        nextButton.addEventListener('click', goNext);
+        document.addEventListener('click', handleFlip);
+        document.addEventListener('touchstart', handleFlip);
+    </script>
+</body>
+</html>

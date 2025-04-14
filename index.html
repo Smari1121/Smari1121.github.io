@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Somsuta | Life Explorer</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syne:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  
+  <div id="particles-js"></div>
+  <div class="stellar-bg"></div>
+  <div class="particles"></div>
+
+  <!-- Corrected Navigation -->
+  <header class="header">
+    <div class="container">
+      <h1 class="logo" data-aos="zoom-in">SOMSUTA</h1>
+      <nav class="nav-links">
+        <a href="#about-me">About</a>
+        <a href="#portals">Portals</a>
+        <a href="#about">Birthplace</a>
+        <a href="#education">Technical Skills</a>
+        <a href="#explorations">Interests</a>
+        <a href="#connect">Connect</a>
+        <a href="#cv">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content" data-aos="fade-up" data-aos-delay="200">
+      <div class="floating">
+        <h2 class="hero-title">Welcome Wanderer!<br>I'm Somsuta Gandhi</h2>
+        <p class="hero-subtitle">A curious girl on the quest to explore sciences and music and know herself.</p>
+      </div>
+      <br>
+      <div class="intro-blurb" data-aos="fade-in" data-aos-delay="400">
+      <p class="note" style="margin-top: 2em; padding: 0 8rem; text-align: center; font-family: 'Syne', sans-serif; font-weight: 400; font-size: 1.4rem; line-height: 2.2rem; color: #eee;" data-aos="fade-in" data-aos-delay="400">
+        A lost cove for weirdos, who like to think differently and are not afraid to show it. I am one such girl, and how I would love for you to know me!
+        Did you ever think the wind that blew was speaking to you in that moment? Or did you ever feel that the equations you scribbled in your note seemed to come out?
+        Did you ever feel that the music you listened to seemed to paint colours much more beautiful than anything you have ever witnessed? (I do not have synesthesia).
+        Did that one moment in the commotion of crowded places, make you think that everyone has their own stories, and how unique we all are, yet so very similar?
+        If any of these resonated with you, I think you and I shall be good friends. I hope you get to know me, even if only a little, through this website of mine.
+      </p>   
+    </div>   
+    </div>
+    <canvas class="starfield"></canvas>
+  </section>
+
+  <section id="about-me" class="section about-section" data-aos="fade-up">
+    <div class="container about-container">
+      <div class="about-image" data-aos="zoom-in">
+        <img src="images/profile.jpg" alt="Somsuta Photo" class="about-photo">
+      </div>
+      
+      <div class="about-text">
+        <h2 class="section-title">About Me</h2>
+        <p>
+          I'm Somsuta, currently a fresher in an esteemed university in India. I am pursuing a Btech in Computer Sciences and Engineering integrated with an MS by Research in Computational Natural Sciences! <br>
+          This doesn't mean that I am an 'only science' student. I find peace, solace and a lot of my fun in my hobbies, which include music, writing, and photography. <br>
+          I have grown up for the most part of my life in Gujarat, with the major part being in Vadodara. <br>
+          My main goal in academia as of now is to build my fundamentals and get into research in Quantum Computing and Mechanics.<br>
+          Other life goals include becoming a better version of myself and finding the beauty in everyday things.
+        </p>
+        <p>
+          Whether in code, research, or song — I seek beauty through curiosity.
+        </p>
+      </div>
+    </div>
+  </section>
+  <section id="portals" class="section" data-aos="fade-up">
+    <div class="container">
+      <div id="particles-js"></div>
+      <h2 class="section-title">Portals of my Foundation</h2>
+      <div class="portal-grid">
+  
+        <a href="https://thebrightschool.com/cbse-vasna.html" target="_blank" class="portal-card portal-glow-card" data-aos="flip-left">
+          <div class="portal-content">
+            <img src="images/school.jpg" alt="School Icon" class="portal-icon">
+            <h3>The Bright School</h3>
+            <p>Schooling from 3rd to 10th standard</p>
+          </div>
+        </a>
+  
+        <a href="https://www.iiit.ac.in/" target="_blank" class="portal-card portal-glow-card" data-aos="flip-left">
+          <div class="portal-content">
+            <img src="images/OIP.jpg" alt="University Icon" class="portal-icon">
+            <h3>International Institute of Information Technology</h3>
+            <p>Pursuing a Btech + MS in CND</p>
+          </div>
+        </a>
+  
+        <a href="https://abgmvm.org/" target="_blank" class="portal-card portal-glow-card" data-aos="flip-left">
+          <div class="portal-content">
+            <img src="images/abg.jpg" alt="Music Icon" class="portal-icon">
+            <h3>Akhil Bhartiya Gandharva Mahavidyalay Mandal</h3>
+            <p>Obtained a diploma in Indian Classical Music</p>
+          </div>
+        </a>
+  
+        <a href="https://www.fiitjee.com/" target="_blank" class="portal-card portal-glow-card" data-aos="flip-left">
+          <div class="portal-content">
+            <img src="images/fiit.jpg" alt="FIITJEE Icon" class="portal-icon">
+            <h3>FIITJEE Limited</h3>
+            <p>Attended an integrated programme for 2 years of JEE preparation.</p>
+          </div>
+        </a>
+  
+      </div>
+    </div>
+  </section>
+  
+  <style>
+  .portal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+  
+  .portal-card {
+    position: relative;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 2rem;
+    color: white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .portal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(173, 216, 230, 0.4);
+  }
+  
+  .portal-glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(173, 216, 230, 0.2), transparent 70%);
+    border-radius: inherit;
+    z-index: 0;
+    transition: opacity 0.5s;
+  }
+  
+  .portal-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .portal-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+    filter: none;
+  }
+  </style>
+  
+  <div class="intro-blurb" data-aos="fade-in" data-aos-delay="400">
+    <p class="note" style="margin-top: 1em; padding: 0 8rem; text-align: center; font-family: 'Syne', sans-serif; font-weight: 400; font-size: 1.4rem; line-height: 2.2rem; color: #eee;" data-aos="fade-in" data-aos-delay="400">
+      These portals lead you to the organisations that have literally shaped me or are shaping me somewhat to what I am now. Calling them organizations is rather dry though. Take a look through them.
+    </p>   
+  </div>
+  <section id="about" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Vadodara : My Root</h2>
+      <div class="stellar-text" data-aos="fade-in">
+        <p>
+          I feel that a person's present is largely determined by their roots. It may not be the case for everyone, but in a way, our experiences do shape us. A large part of my childhood was spent in Vadodara, Gujarat, and even though I am orginally not a Gujarati, this place holds a special place in my heart, and I want to share some of its wonders with you.
+        </p>
+      </div>
+    
+      <div class="local-grid">
+
+        <a href="akota.html" class="local-card-link">
+          <div class="local-card" data-aos="zoom-in">
+            <img src="images/img1.jpg" alt="Birthplace 1">
+            <div class="local-overlay">The Akota Bridge: A colourful transit</div>
+          </div>
+        </a>
+      
+        <a href="lion.html" class="local-card-link">
+          <div class="local-card" data-aos="zoom-in">
+            <img src="images/img2.jpg" alt="Birthplace 2">
+            <div class="local-overlay">A lion singing into a mic. My life is complete.</div>
+          </div>
+        </a>
+      
+        <a href="palace.html" class="local-card-link">
+          <div class="local-card" data-aos="zoom-in">
+            <img src="images/img3.jpg" alt="Birthplace 3">
+            <div class="local-overlay">Laxmi Vilas Palace: The epitome of royal beauty</div>
+          </div>
+        </a>
+      
+        <a href="lake.html" class="local-card-link">
+          <div class="local-card" data-aos="zoom-in">
+            <img src="images/img4.jpg" alt="Birthplace 4">
+            <div class="local-overlay">Sursagar Lake: Peace amidst the crowds</div>
+          </div>
+        </a>
+      
+      </div>
+      
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-grid">
+        
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="skill-icon">💻</div>
+          <h3>Programming Languages</h3>
+          <ul class="skill-list">
+            <li>Python <span class="skill-level">90%</span></li>
+            <li>C/C++ <span class="skill-level">85%</span></li>
+            <li>JavaScript <span class="skill-level">80%</span></li>
+          </ul>
+        </div>
+        
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="skill-icon">🌐</div>
+          <h3>Web & Frameworks</h3>
+          <ul class="skill-list">
+            <li>HTML/CSS <span class="skill-level">92%</span></li>
+            <li>React.js <span class="skill-level">85%</span></li>
+            <li>Tailwind CSS <span class="skill-level">88%</span></li>
+          </ul>
+        </div>
+        
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="400">
+          <div class="skill-icon">🛠️</div>
+          <h3>Tools & Technologies</h3>
+          <ul class="skill-list">
+            <li>Git/GitHub <span class="skill-level">92%</span></li>
+            <li>Linux <span class="skill-level">85%</span></li>
+            <li>VS Code <span class="skill-level">90%</span></li>
+          </ul>
+        </div>
+        
+        <div class="skill-card" data-aos="zoom-in" data-aos-delay="500">
+          <div class="skill-icon">🗄️</div>
+          <h3>Databases</h3>
+          <ul class="skill-list">
+            <li>SQL <span class="skill-level">87%</span></li>
+            <li>MySQL <span class="skill-level">85%</span></li>
+            <li>Database Design <span class="skill-level">80%</span></li>
+          </ul>
+        </div>
+        
+  
+      </div>
+    </div>
+  </section>
+  
+  <style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .skill-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(173, 216, 230, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .skill-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .skill-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .skill-list li {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  .skill-level {
+    position: relative;
+    color: #b19cd9;
+  }
+  
+  .skill-list li::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #b19cd9 0%, transparent 100%);
+    opacity: 0.3;
+  }
+  
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  </style>
+
+  <section id="explorations" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Personal Explorations</h2>
+      <div class="portal-grid">
+        <a href="writing.html" class="portal-link">
+          <div class="portal-card" data-aos="flip-left">
+            <div class="portal-content">
+              <h3>✍️ Writing</h3>
+              <p>Stories, poetry and imageries</p>
+              <div class="portal-glow"></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="music.html" class="portal-link">
+          <div class="portal-card" data-aos="flip-left">
+            <div class="portal-content">
+              <h3>🎧 Music</h3>
+              <p>Harmony of notes and rhythm</p>
+              <div class="portal-glow"></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="swimming.html" class="portal-link">
+          <div class="portal-card" data-aos="flip-left">
+            <div class="portal-content">
+              <h3>🏊‍♀️ Swimming</h3>
+              <p>Flow, Breath, and Freedom</p>
+              <div class="portal-glow"></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="quantum.html" class="portal-link">
+          <div class="portal-card" data-aos="flip-left">
+            <div class="portal-content">
+              <h3>⚛️ Quantum Computing</h3>
+              <p>Entangled curiosities</p>
+              <div class="portal-glow"></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="science.html" class="portal-link">
+          <div class="portal-card" data-aos="flip-left">
+            <div class="portal-content">
+              <h3>🔬 Sciences</h3>
+              <p>The passion of the universe</p>
+              <div class="portal-glow"></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="photo.html" class="portal-link">
+          <div class="portal-card" data-aos="flip-left">
+            <div class="portal-content">
+              <h3>📷 Photography</h3>
+              <p>Capturing moments in Bloom</p>
+              <div class="portal-glow"></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="food.html" class="portal-link">
+          <div class="portal-card" data-aos="flip-left">
+            <div class="portal-content">
+              <h3>🍣 Food & Drinks</h3>
+              <p>Flavors forevermore</p>
+              <div class="portal-glow"></div>
+            </div>
+          </div>
+        </a>
+        
+        <a href="reading.html" class="portal-link">
+          <div class="portal-card" data-aos="flip-left">
+            <div class="portal-content">
+              <h3>📖 Reading</h3>
+              <p>The essence of words</p>
+              <div class="portal-glow"></div>
+            </div>
+          </div>
+        </a>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Connect With Me Section -->
+  <section id="connect" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Connect With Me</h2>
+      <div class="connect-container">
+        <p class="connect-text">Let's connect and create something beautiful together!</p>
+        
+        <div class="social-icons">
+          <a href="https://instagram.com/someray11" target="_blank" class="social-icon" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fab fa-instagram"></i>
+            <span class="icon-label">Instagram</span>
+          </a>
+          
+          <a href="https://github.com/Smari1121" target="_blank" class="social-icon" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fab fa-github"></i>
+            <span class="icon-label">GitHub</span>
+          </a>
+          
+          <a href="mailto:somsuta.somak10b@gmail.com" class="social-icon" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-envelope"></i>
+            <span class="icon-label">Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+  .connect-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+  }
+  
+  .connect-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #eee;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 1rem;
+  }
+  
+  .social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #eee;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-icon i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #b19cd9;
+    transition: all 0.3s ease;
+  }
+  
+  .social-icon:hover {
+    transform: translateY(-10px);
+  }
+  
+  .social-icon:hover i {
+    color: #fff;
+    text-shadow: 0 0 15px rgba(177, 156, 217, 0.8);
+  }
+  
+  .icon-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 768px) {
+    .social-icons {
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
+  </style>
+
+  <section id="cv" class="section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Curriculum Vitae</h2>
+      <p style="text-align: center">
+        <a href="cv.pdf" target="_blank">Download My CV</a>
+      </p>
+    </div>
+  </section>
+   <!-- Text Analyzer Section -->
+<section id="text-analyzer" class="section" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title">Text Analyzer</h2>
+    <div class="text-analyzer-container">
+      <div class="text-input-area">
+        <textarea id="textInput" placeholder="Enter your text here (10,000+ words supported)" rows="10"></textarea>
+        <button id="analyzeBtn" class="analyze-btn">Analyze Text</button>
+      </div>
+      
+      <div class="analysis-results">
+        <div class="result-card" data-aos="zoom-in" data-aos-delay="100">
+          <h3>Basic Statistics</h3>
+          <div id="basicStats" class="stats-container">
+            <div class="stat-item">
+              <span class="stat-label">Letters:</span>
+              <span class="stat-value" id="letterCount">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Words:</span>
+              <span class="stat-value" id="wordCount">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Spaces:</span>
+              <span class="stat-value" id="spaceCount">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Newlines:</span>
+              <span class="stat-value" id="newlineCount">0</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Special Symbols:</span>
+              <span class="stat-value" id="specialCount">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card" data-aos="zoom-in" data-aos-delay="200">
+          <h3>Pronouns Analysis</h3>
+          <div id="pronounsStats" class="stats-container">
+            <p class="no-data-msg">Analyze text to see pronoun statistics</p>
+          </div>
+        </div>
+
+        <div class="result-card" data-aos="zoom-in" data-aos-delay="300">
+          <h3>Prepositions Analysis</h3>
+          <div id="prepositionsStats" class="stats-container">
+            <p class="no-data-msg">Analyze text to see preposition statistics</p>
+          </div>
+        </div>
+
+        <div class="result-card" data-aos="zoom-in" data-aos-delay="400">
+          <h3>Indefinite Articles Analysis</h3>
+          <div id="articlesStats" class="stats-container">
+            <p class="no-data-msg">Analyze text to see indefinite article statistics</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.text-analyzer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.text-input-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#textInput {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(173, 216, 230, 0.2);
+  border-radius: 10px;
+  padding: 1rem;
+  color: #eee;
+  font-family: 'Space Grotesk', sans-serif;
+  resize: vertical;
+  width: 100%;
+}
+
+.analyze-btn {
+  background: linear-gradient(45deg, #b19cd9, #8a65c9);
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.8rem 1.5rem;
+  transition: all 0.3s ease;
+  align-self: center;
+}
+
+.analyze-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(138, 101, 201, 0.4);
+}
+
+.analysis-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.result-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(173, 216, 230, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-5px);
+}
+
+.result-card h3 {
+  color: #b19cd9;
+  font-family: 'Syne', sans-serif;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.stats-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(173, 216, 230, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #eee;
+}
+
+.stat-value {
+  color: #b19cd9;
+  font-weight: 500;
+}
+
+.no-data-msg {
+  color: #888;
+  text-align: center;
+  font-style: italic;
+}
+
+.pronoun-group, .preposition-group, .article-group {
+  margin-bottom: 1rem;
+}
+
+.pronoun-group h4, .preposition-group h4, .article-group h4 {
+  color: #b19cd9;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.word-count-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.word-count-item {
+  background: rgba(177, 156, 217, 0.1);
+  border-radius: 5px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .analysis-results {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const analyzeBtn = document.getElementById('analyzeBtn');
+  
+  analyzeBtn.addEventListener('click', function() {
+    const text = document.getElementById('textInput').value;
+    
+    if (!text.trim()) {
+      alert('Please enter some text to analyze.');
+      return;
+    }
+    
+    // Perform all analyses
+    analyzeBasicStats(text);
+    analyzePronouns(text);
+    analyzePrepositions(text);
+    analyzeIndefiniteArticles(text);
+  });
+  
+  // Basic statistics analysis
+  function analyzeBasicStats(text) {
+    const letterCount = (text.match(/[a-zA-Z]/g) || []).length;
+    const wordCount = text.trim().split(/\s+/).length;
+    const spaceCount = (text.match(/\s/g) || []).length;
+    const newlineCount = (text.match(/\n/g) || []).length;
+    
+    // Count everything that's not a letter, digit, or whitespace as a special symbol
+    const specialCount = (text.match(/[^a-zA-Z0-9\s]/g) || []).length;
+    
+    document.getElementById('letterCount').textContent = letterCount;
+    document.getElementById('wordCount').textContent = wordCount;
+    document.getElementById('spaceCount').textContent = spaceCount;
+    document.getElementById('newlineCount').textContent = newlineCount;
+    document.getElementById('specialCount').textContent = specialCount;
+  }
+  
+  // Pronouns analysis
+  function analyzePronouns(text) {
+    const pronouns = {
+      'personal': ['i', 'me', 'my', 'mine', 'myself', 'you', 'your', 'yours', 'yourself', 'he', 'him', 'his', 'himself', 'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'we', 'us', 'our', 'ours', 'ourselves', 'they', 'them', 'their', 'theirs', 'themselves'],
+      'demonstrative': ['this', 'that', 'these', 'those'],
+      'interrogative': ['who', 'whom', 'whose', 'which', 'what'],
+      'relative': ['who', 'whom', 'whose', 'which', 'that'],
+      'indefinite': ['anybody', 'anyone', 'anything', 'each', 'either', 'everybody', 'everyone', 'everything', 'neither', 'nobody', 'no one', 'nothing', 'one', 'somebody', 'someone', 'something', 'both', 'few', 'many', 'several', 'all', 'any', 'most', 'none', 'some']
+    };
+    
+    // Prepare text for analysis
+    const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+    
+    const pronounCounts = {};
+    
+    // Count occurrences of each pronoun
+    for (const category in pronouns) {
+      pronounCounts[category] = {};
+      
+      for (const pronoun of pronouns[category]) {
+        const count = words.filter(word => word === pronoun).length;
+        if (count > 0) {
+          pronounCounts[category][pronoun] = count;
+        }
+      }
+    }
+    
+    // Display results
+    const pronounsStatsElement = document.getElementById('pronounsStats');
+    pronounsStatsElement.innerHTML = '';
+    
+    let hasPronouns = false;
+    
+    for (const category in pronounCounts) {
+      const categoryPronouns = pronounCounts[category];
+      
+      if (Object.keys(categoryPronouns).length > 0) {
+        hasPronouns = true;
+        
+        const categoryElement = document.createElement('div');
+        categoryElement.className = 'pronoun-group';
+        
+        const categoryTitle = document.createElement('h4');
+        categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1) + ' Pronouns';
+        categoryElement.appendChild(categoryTitle);
+        
+        const wordList = document.createElement('div');
+        wordList.className = 'word-count-list';
+        
+        for (const pronoun in categoryPronouns) {
+          const wordItem = document.createElement('span');
+          wordItem.className = 'word-count-item';
+          wordItem.textContent = `${pronoun}: ${categoryPronouns[pronoun]}`;
+          wordList.appendChild(wordItem);
+        }
+        
+        categoryElement.appendChild(wordList);
+        pronounsStatsElement.appendChild(categoryElement);
+      }
+    }
+    
+    if (!hasPronouns) {
+      pronounsStatsElement.innerHTML = '<p class="no-data-msg">No pronouns found in the text.</p>';
+    }
+  }
+  
+  // Prepositions analysis
+  function analyzePrepositions(text) {
+    const prepositions = {
+      'simple': ['at', 'by', 'for', 'from', 'in', 'of', 'off', 'on', 'to', 'with'],
+      'compound': ['according to', 'along with', 'apart from', 'because of', 'due to', 'except for', 'instead of', 'next to', 'out of', 'prior to', 'with regard to'],
+      'place': ['above', 'across', 'against', 'along', 'among', 'around', 'below', 'beneath', 'beside', 'between', 'beyond', 'inside', 'into', 'near', 'off', 'onto', 'outside', 'over', 'under', 'within'],
+      'time': ['after', 'before', 'during', 'since', 'till', 'until']
+    };
+    
+    // Lowercase the text for case-insensitive matching
+    const lowerText = text.toLowerCase();
+    
+    const prepositionCounts = {};
+    
+    // Count occurrences of each preposition
+    for (const category in prepositions) {
+      prepositionCounts[category] = {};
+      
+      for (const preposition of prepositions[category]) {
+        // For compound prepositions, we need to look for the exact phrase
+        if (preposition.includes(' ')) {
+          const regex = new RegExp(`\\b${preposition}\\b`, 'g');
+          const matches = lowerText.match(regex) || [];
+          if (matches.length > 0) {
+            prepositionCounts[category][preposition] = matches.length;
+          }
+        } else {
+          // For simple prepositions, we can look for word boundaries
+          const regex = new RegExp(`\\b${preposition}\\b`, 'g');
+          const matches = lowerText.match(regex) || [];
+          if (matches.length > 0) {
+            prepositionCounts[category][preposition] = matches.length;
+          }
+        }
+      }
+    }
+    
+    // Display results
+    const prepositionsStatsElement = document.getElementById('prepositionsStats');
+    prepositionsStatsElement.innerHTML = '';
+    
+    let hasPrepositions = false;
+    
+    for (const category in prepositionCounts) {
+      const categoryPrepositions = prepositionCounts[category];
+      
+      if (Object.keys(categoryPrepositions).length > 0) {
+        hasPrepositions = true;
+        
+        const categoryElement = document.createElement('div');
+        categoryElement.className = 'preposition-group';
+        
+        const categoryTitle = document.createElement('h4');
+        categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1) + ' Prepositions';
+        categoryElement.appendChild(categoryTitle);
+        
+        const wordList = document.createElement('div');
+        wordList.className = 'word-count-list';
+        
+        for (const preposition in categoryPrepositions) {
+          const wordItem = document.createElement('span');
+          wordItem.className = 'word-count-item';
+          wordItem.textContent = `${preposition}: ${categoryPrepositions[preposition]}`;
+          wordList.appendChild(wordItem);
+        }
+        
+        categoryElement.appendChild(wordList);
+        prepositionsStatsElement.appendChild(categoryElement);
+      }
+    }
+    
+    if (!hasPrepositions) {
+      prepositionsStatsElement.innerHTML = '<p class="no-data-msg">No prepositions found in the text.</p>';
+    }
+  }
+  
+  // Indefinite articles analysis
+  function analyzeIndefiniteArticles(text) {
+    const articles = ['a', 'an'];
+    
+    // Prepare text for analysis
+    const words = text.toLowerCase().match(/\b\w+\b/g) || [];
+    
+    const articleCounts = {};
+    
+    // Count occurrences of each indefinite article
+    for (const article of articles) {
+      const count = words.filter(word => word === article).length;
+      if (count > 0) {
+        articleCounts[article] = count;
+      }
+    }
+    
+    // Display results
+    const articlesStatsElement = document.getElementById('articlesStats');
+    articlesStatsElement.innerHTML = '';
+    
+    if (Object.keys(articleCounts).length > 0) {
+      const articleElement = document.createElement('div');
+      articleElement.className = 'article-group';
+      
+      const wordList = document.createElement('div');
+      wordList.className = 'word-count-list';
+      
+      for (const article in articleCounts) {
+        const wordItem = document.createElement('span');
+        wordItem.className = 'word-count-item';
+        wordItem.textContent = `${article}: ${articleCounts[article]}`;
+        wordList.appendChild(wordItem);
+      }
+      
+      articleElement.appendChild(wordList);
+      articlesStatsElement.appendChild(articleElement);
+      
+      // Add context about usage
+      const usageInfo = document.createElement('p');
+      usageInfo.style.marginTop = '1rem';
+      usageInfo.style.fontSize = '0.9rem';
+      usageInfo.innerHTML = 'Usage guide: <br>"A" is used before consonant sounds<br>"An" is used before vowel sounds';
+      articlesStatsElement.appendChild(usageInfo);
+    } else {
+      articlesStatsElement.innerHTML = '<p class="no-data-msg">No indefinite articles found in the text.</p>';
+    }
+  }
+});
+</script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="script.js"></script>
+</body>
+<footer class="footer">
+  <div class="container">
+    <p style="text-align: center; font-size: 1rem; color: #aaa;">
+      © 2025 Somsuta Gandhi • Built with love and fun
+    </p>
+  </div>
+</footer>
+</html>

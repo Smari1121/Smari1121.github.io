@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(45deg, #1a0b2e, #2a1a4a);
+            min-height: 100vh;
+            font-family: 'Cormorant Garamond', serif;
+            color: #e6e6ff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vinyl-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .vinyl {
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #2a1a4a 40%, #1a0b2e 100%);
+            border: 2px solid rgba(179, 156, 217, 0.3);
+            animation: spin 30s linear infinite;
+            box-shadow: 0 0 50px rgba(179, 156, 217, 0.1);
+        }
+
+        .floating-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .music-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 40px,
+                rgba(179, 156, 217, 0.2) 40px,
+                rgba(179, 156, 217, 0.2) 80px
+            );
+            animation: staffFlow 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        .note-particle {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0;
+            animation: noteFloat 3s ease-out forwards;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #b19cd9;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(177, 156, 217, 0.5);
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        .body-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 8px;
+            animation: fadeUp 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes staffFlow {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0%); }
+        }
+
+        @keyframes noteFloat {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+        }
+
+        .lyric-line {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-divider {
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #b19cd9, transparent);
+            margin: 3rem auto;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 768px) {
+            .vinyl {
+                width: 300px;
+                height: 300px;
+            }
+            .floating-text {
+                font-size: 1.2rem;
+                padding: 1rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .body-text {
+                font-size: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vinyl-container">
+        <div class="vinyl"></div>
+    </div>
+
+    <div class="music-bar"></div>
+
+    <div class="container">
+        <h2>Journey Through Music</h2>
+        
+        <div class="body-text">
+            My journey with music began at the age of five, when I was first introduced to Hindustani Classical vocals. What initially started as a disciplined practice gradually evolved into a profound means of expression—one that allowed me to articulate emotions beyond the reach of words. Over the years, I have had the privilege of performing across various platforms, both classical and contemporary, and hold an Upantya Visharad in vocals. Alongside vocal training, I have briefly explored a range of instruments, including the piano, harmonium, guitar, and ukulele—each offering a unique perspective on melody and rhythm. Music, for me, is not just a practice, but a continuous journey of discovery and connection.
+        </div>
+        
+        <div class="floating-text">
+            <div class="lyric-line" style="animation-delay: 0.5s">In the stillness, a song stirs within,</div>
+            <div class="lyric-line" style="animation-delay: 1.5s">gentle at first, then sweeping through</div>
+            <div class="lyric-line" style="animation-delay: 2.5s">filling the spaces where words fail.</div>
+            <div class="lyric-line" style="animation-delay: 3.5s">It pulls at something deep inside,</div>
+            
+            <div class="section-divider"></div>
+
+            <div class="lyric-line" style="animation-delay: 4.5s">a quiet joy that rises,</div>
+            <div class="lyric-line" style="animation-delay: 5.5s">unexpected, but always welcome.</div>
+            <div class="lyric-line" style="animation-delay: 6.5s">In its flow, time slows</div>
+            <div class="lyric-line" style="animation-delay: 7.5s">and for a moment, I am whole.</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            if(Math.random() > 0.97) {
+                const note = document.createElement('div');
+                note.className = 'note-particle';
+                note.innerHTML = Math.random() > 0.5 ? '♪' : '♫';
+                note.style.left = `${e.clientX}px`;
+                note.style.top = `${e.clientY}px`;
+                document.body.appendChild(note);
+                
+                setTimeout(() => note.remove(), 3000);
+            }
+        });
+
+        // Animate lyric lines on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        });
+
+        document.querySelectorAll('.lyric-line, .body-text').forEach(element => {
+            element.style.animationPlayState = 'paused';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Photography</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #1a3a5f;
+      --accent-color: #ff7746;
+      --bg-color: #f4f4f4;
+      --text-color: #222;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .floating-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      opacity: 0.1;
+      animation: floatUp 20s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      width: 60px;
+      height: 4px;
+      background: var(--accent-color);
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .body-text {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 3rem auto;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating-bg" id="bg-particles"></div>
+
+  <div class="container">
+    <h2>My Photography</h2>
+    <div class="body-text">
+      <p>Every frame tells a story—of light, of life, of silence. Through my lens, I seek beauty in the overlooked and moments in the mundane. Photography, for me, is less about perfection and more about presence. It’s about capturing emotion in motion, and the magic that unfolds when shadow meets light.</p>
+      <p>Here are some moments I’ve captured—each frame a reflection of a fleeting instant, frozen in time.</p>
+    </div>
+
+    <div class="gallery">
+      <img src="images/ph1.jpg" alt="Photo 1">
+      <img src="images/ph2.jpg" alt="Photo 2">
+      <img src="images/ph3.jpg" alt="Photo 3">
+      <img src="images/ph4.jpg" alt="Photo 4">
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById('bg-particles');
+    const particleCount = 40;
+
+    for (let i = 0; i < particleCount; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDuration = 10 + Math.random() * 20 + 's';
+      p.style.width = p.style.height = Math.random() * 6 + 4 + 'px';
+      p.style.top = Math.random() * 100 + 'vh';
+      container.appendChild(p);
+    }
+  </script>
+
+</body>
+</html>
