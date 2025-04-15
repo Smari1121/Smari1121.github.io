@@ -105,7 +105,8 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     },
     retina_detect: true
   });
-//Q2
+  
+  //Q2
   // Utility to classify HTML element type
 function classifyElement(element) {
   const tag = element.tagName.toLowerCase();
@@ -124,13 +125,13 @@ function classifyElement(element) {
   if (tag === "section") return "section";
   if (tag === "div") return "container";
   
-  return other (${tag});
+  return `other (${tag})`;
 }
 
 // Log the view when page loads
 window.addEventListener("load", () => {
   const timestamp = new Date().toLocaleString();
-  console.log(${timestamp} , view , page);
+  console.log(`${timestamp} , view , page`);
 });
 
 // Log clicks on all elements
@@ -139,6 +140,5 @@ document.addEventListener("click", function (e) {
   const timestamp = new Date().toLocaleString();
   const elementType = classifyElement(target);
 
-  console.log(${timestamp} , click , ${elementType});
+  console.log(`${timestamp} , click , ${elementType}`);
 });
-  
